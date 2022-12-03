@@ -1,11 +1,12 @@
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:task1_bloc_training__/repositry/models/product_model.dart';
 import 'categorie_widget.dart';
 import 'package:flutter/material.dart';
 
 class CardWidget extends StatelessWidget {
-  const CardWidget({Key? key}) : super(key: key);
-
+  final ProductModel product  ;
+  const CardWidget({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,14 +29,14 @@ class CardWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Text(
-                  "TIIIIIITLE",
+                  product.title,
                   style: TextStyle(fontSize: 10),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(1),
                 child: Text(
-                  "Sub  sadasd TIIIIIITLE",
+                  product.description,
                   style: TextStyle(fontSize: 5),
                 ),
               ),
@@ -43,7 +44,7 @@ class CardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "\$ 213",
+                    "\$ ${product.price}",
                     style: TextStyle(fontSize: 14, color: Colors.orange),
                   ),
                   IconButton(onPressed: (){}, icon: Icon(Icons.add , color: Colors.black,))
