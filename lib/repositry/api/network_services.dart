@@ -9,7 +9,7 @@ class NetworkService {
     dio = Dio(
       BaseOptions(
         receiveDataWhenStatusError: true,
-        baseUrl: BaseUrl,
+        // baseUrl: BaseUrl,
         connectTimeout: 5000,
         receiveTimeout: 3000,
       ),
@@ -19,8 +19,10 @@ class NetworkService {
   static Future<Response> getData({required String endPoint}) async {
 
      try {
-  Response response= await dio.get("mens-watches");
-   return response;
+  Response response= await dio.get("https://dummyjson.com/products/category/smartphones");
+  print(response.data);
+  print(response.statusCode);
+   return await dio.get("https://dummyjson.com/products/category/smartphones");
 } on Exception catch (e) {
    print(e);
    Response r =Response(requestOptions: RequestOptions(path: ""));

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task1_bloc_training__/interface/screens/onboard_screen.dart';
+import 'package:task1_bloc_training__/repositry/api/network_services.dart';
 import 'package:task1_bloc_training__/repositry/bloc/products_cubit.dart';
 // import 'package:bloc/bloc.dart';
 void main() {
+  NetworkService.initDio();
   runApp(const MyApp());
 }
 

@@ -9,12 +9,12 @@ class ProductsCubit extends Cubit<ProductsState>  {
   List <ProductModel> productsList = [];
   void getProducts(String category) async{
         emit(LodaingProductsState());
-    Response response = await NetworkService.getData(endPoint: 'mens-watches');
+    Response? response = await NetworkService.getData(endPoint: 'smartphones');
     print(response.statusCode);
     print(response);
     if(response.statusCode ==200){
 
-      List result =( response.data ) as List;
+      List result =( response.data['products'] ) as List;
       productsList = result.map((product) => ProductModel.fromJson(product)).toList();
     print(response.statusCode);
 

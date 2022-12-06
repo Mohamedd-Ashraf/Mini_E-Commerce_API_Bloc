@@ -98,7 +98,7 @@ class ProductModel {
   final String brand;
   final String category;
   final String thumbnail;
-  final List<String> images;
+  final List<dynamic> images;
 
   ProductModel(
       {required this.id,
