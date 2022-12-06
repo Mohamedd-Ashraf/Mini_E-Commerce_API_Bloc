@@ -1,1 +1,1 @@
-String BaseUrl = 'https://dummyjson.com/category/';
+String BaseUrl = 'https://dummyjson.com/products/category/';

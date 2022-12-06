@@ -9,7 +9,7 @@ class ProductsCubit extends Cubit<ProductsState>  {
   List <ProductModel> productsList = [];
   void getProducts(String category) async{
         emit(LodaingProductsState());
-    Response? response = await NetworkService.getData(endPoint: 'smartphones');
+    Response? response = await NetworkService.getData(endPoint: category);
     print(response.statusCode);
     print(response);
     if(response.statusCode ==200){
