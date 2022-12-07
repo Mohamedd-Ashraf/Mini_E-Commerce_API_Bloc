@@ -9,39 +9,45 @@ import 'package:task1_bloc_training__/repositry/bloc/products_states.dart';
 import 'package:task1_bloc_training__/utils/colors/my_colors.dart';
 
 class ProductsScreen extends StatelessWidget {
-  const ProductsScreen({Key? key}) : super(key: key);
+ final  String category , name;
+  const ProductsScreen({Key? key, required this.category, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductsCubit, ProductsState>(
-      builder: (context, state) {
-        return  Scaffold(
-          backgroundColor: backGorundColor,
-          appBar: AppBar(
+    return BlocProvider(
+            create: (context) => ProductsCubit()..getProducts(category),
+
+      child: BlocBuilder<ProductsCubit, ProductsState>(
+        builder: (context, state) {
+          return  Scaffold(
             backgroundColor: backGorundColor,
-            elevation: 0,
-            title: Text("Man Collection"),
-          ),
-          body:(state is ProductsAreLoadedState)? SafeArea(
-              child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 2 / 3,
-                    crossAxisSpacing: 3,
-                    mainAxisSpacing: 1,
-                  ),
-                  itemCount: context.watch<ProductsCubit>().productsList.length,
-                  itemBuilder: (context, index) {
-                    return CardWidget(product: context.watch<ProductsCubit>().productsList[index] ,);
-                  },
-                  ),
-                  ): Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.black,
-                      ),
+            appBar: AppBar(
+              backgroundColor: backGorundColor,
+              elevation: 0,
+              centerTitle: true,
+              title: Text(name , style: TextStyle(color: Colors.black),),
+            ),
+            body:(state is ProductsAreLoadedState)? SafeArea(
+                child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 2 / 3,
+                      crossAxisSpacing: 3,
+                      mainAxisSpacing: 1,
                     ),
-        );
-      },
+                    itemCount: context.watch<ProductsCubit>().productsList.length,
+                    itemBuilder: (context, index) {
+                      return CardWidget(product: context.watch<ProductsCubit>().productsList[index] ,);
+                    },
+                    ),
+                    ): Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.black,
+                        ),
+                      ),
+          );
+        },
+      ),
     );
   }
 }
