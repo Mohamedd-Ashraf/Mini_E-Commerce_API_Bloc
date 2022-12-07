@@ -20,9 +20,11 @@ class CardWidget extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: const Image(
+                child:  Image(
+                  height: 150,
+                  width: 150,
                   image: NetworkImage(
-                    "https://scontent.fcai19-4.fna.fbcdn.net/v/t39.30808-6/317608294_1242161846685819_369083510121017431_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5cd70e&_nc_eui2=AeHmFB-zD9R13ST-lawU8I4eeV_DvHlaDgx5X8O8eVoODIlljd23BX71HQghZ1l5PSHOnjnx4oqv75m4t_F8v07S&_nc_ohc=91OHcikLAnwAX831kaB&_nc_ht=scontent.fcai19-4.fna&oh=00_AfBeXYVyEaVlnNq-EJdUgAtfusshlPJbT5OhNfaR4Iim4Q&oe=638E0DAA",
+                    product.thumbnail,
                   ),
                 ),
               ),
@@ -30,14 +32,17 @@ class CardWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(4.0),
                 child: Text(
                   product.title,
-                  style: TextStyle(fontSize: 10),
+                     maxLines: 2,
+                  style: TextStyle(fontSize: 16 , overflow: TextOverflow.ellipsis, fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(1),
                 child: Text(
+                  
                   product.description,
-                  style: TextStyle(fontSize: 5),
+                  maxLines: 1,
+                  style: TextStyle(fontSize: 13 , overflow: TextOverflow.ellipsis  , fontWeight: FontWeight.w500),
                 ),
               ),
               Row(
@@ -45,7 +50,7 @@ class CardWidget extends StatelessWidget {
                 children: [
                   Text(
                     "\$ ${product.price}",
-                    style: TextStyle(fontSize: 14, color: Colors.orange),
+                    style: TextStyle(fontSize: 18, color: Color.fromARGB(255, 150, 0, 0) ,fontWeight: FontWeight.bold),
                   ),
                   IconButton(onPressed: (){}, icon: Icon(Icons.add , color: Colors.black,))
                 ],

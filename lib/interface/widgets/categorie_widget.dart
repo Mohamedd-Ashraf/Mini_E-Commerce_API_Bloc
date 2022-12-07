@@ -7,8 +7,8 @@ import '../screens/categories_screen.dart';
 import '../screens/products_screen.dart';
 
 class CategorieWidget extends StatelessWidget {
-  final String url , name;
-  const CategorieWidget({Key? key, required this.url, required this.name}) : super(key: key);
+  final String url , name , category;
+  const CategorieWidget({Key? key, required this.url, required this.name, required this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CategorieWidget extends StatelessWidget {
         child: InkWell(
           onTap: (){
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (_)=>ProductsScreen())
+              MaterialPageRoute(builder: (_)=>ProductsScreen(category: category,name: name,))
             );
           },
           child: Stack(children: [
