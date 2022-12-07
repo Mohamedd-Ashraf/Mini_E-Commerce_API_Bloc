@@ -9,17 +9,21 @@ class ProductsCubit extends Cubit<ProductsState>  {
   List <ProductModel> productsList = [];
   void getProducts(String category) async{
         emit(LodaingProductsState());
-    Response? response = await NetworkService.getData(endPoint: category);
-    print(response.statusCode);
-    print(response);
-    if(response.statusCode ==200){
-
-      List result =( response.data['products'] ) as List;
-      productsList = result.map((product) => ProductModel.fromJson(product)).toList();
-    print(response.statusCode);
-
-      emit(ProductsAreLoadedState());
-    }
+ try {
+  Response response = await NetworkService.getData(endPoint: category);
+  print(response.statusCode);
+  print(response);
+  if(response.statusCode ==200){
+  
+    List result =( response.data['products'] ) as List;
+    productsList = result.map((product) => ProductModel.fromJson(product)).toList();  
+    emit(ProductsAreLoadedState());
+  }
+} on DioError  catch (error) {
+  print("\n\\n\n\n\n failed ");
+  emit(FaieldToLoadProducts());
+  // TODO
+}
   }
   
 }

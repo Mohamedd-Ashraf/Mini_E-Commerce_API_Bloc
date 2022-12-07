@@ -8,44 +8,71 @@ import 'package:task1_bloc_training__/repositry/bloc/products_cubit.dart';
 import 'package:task1_bloc_training__/repositry/bloc/products_states.dart';
 import 'package:task1_bloc_training__/utils/colors/my_colors.dart';
 
+import '../../utils/sizes/my_sizes.dart';
+
 class ProductsScreen extends StatelessWidget {
- final  String category , name;
-  const ProductsScreen({Key? key, required this.category, required this.name}) : super(key: key);
+  final String category, name;
+  const ProductsScreen({Key? key, required this.category, required this.name})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-            create: (context) => ProductsCubit()..getProducts(category),
-
+      create: (context) => ProductsCubit()..getProducts(category),
       child: BlocBuilder<ProductsCubit, ProductsState>(
         builder: (context, state) {
-          return  Scaffold(
-            backgroundColor: backGorundColor,
-            appBar: AppBar(
+          return Scaffold(
               backgroundColor: backGorundColor,
-              elevation: 0,
-              centerTitle: true,
-              title: Text(name , style: TextStyle(color: Colors.black),),
-            ),
-            body:(state is ProductsAreLoadedState)? SafeArea(
-                child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 2 / 3,
-                      crossAxisSpacing: 3,
-                      mainAxisSpacing: 1,
-                    ),
-                    itemCount: context.watch<ProductsCubit>().productsList.length,
-                    itemBuilder: (context, index) {
-                      return CardWidget(product: context.watch<ProductsCubit>().productsList[index] ,);
-                    },
-                    ),
-                    ): Center(
-                        child: CircularProgressIndicator(
-                          color: Colors.black,
+              appBar: AppBar(
+                backgroundColor: backGorundColor,
+                elevation: 0,
+                centerTitle: true,
+                title: Text(
+                  name,
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              body: (state is ProductsAreLoadedState)
+                  ? SafeArea(
+                      child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 2 / 3,
+                          crossAxisSpacing: 3,
+                          mainAxisSpacing: 1,
                         ),
+                        itemCount:
+                            context.watch<ProductsCubit>().productsList.length,
+                        itemBuilder: (context, index) {
+                          return CardWidget(
+                            product: context
+                                .watch<ProductsCubit>()
+                                .productsList[index],
+                          );
+                        },
                       ),
-          );
+                    )
+                  : (state is LodaingProductsState)
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.black,
+                          ),
+                        )
+                      :
+                         Center(
+                            child: Column(children: [
+                              Image.asset("assets/404-Error-0.jpg"),
+                               SizedBox(
+                                height: s10,
+                              ),
+                             const Padding(
+                                padding:  EdgeInsets.all(8.0),
+                                child:  Text(
+                                    "SomeThing Happend Please Try again Later" , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 25),),
+                              )
+                            ]),
+                          ),
+                        );
         },
       ),
     );

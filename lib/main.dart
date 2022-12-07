@@ -30,47 +30,48 @@ import 'package:task1_bloc_training__/utils/colors/my_colors.dart';
 void main() {
     NetworkService.initDio();
 
-  runApp(new MaterialApp(
+  runApp( MaterialApp(
           debugShowCheckedModeBanner: false,
-    home: new MyApp(),
+    home:  MyApp(),
   ));
 }
 
 class MyApp extends StatefulWidget {
   @override
-  _MyAppState createState() => new _MyAppState();
+  _MyAppState createState() =>  _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    new Future.delayed(
+     Future.delayed(
         const Duration(seconds: 3),
-        () => Navigator.push(
+        () => Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => OnBoardScreen()),
+              MaterialPageRoute(builder: (context) => const OnBoardScreen()),
+                (Route<dynamic> route) => false,
             ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return  Scaffold(
       backgroundColor: backGorundColor,
       body: Container(
-        child: new Column(children: <Widget>[
-          Divider(
+        child:   Column(children: <Widget>[
+          const Divider(
             height: 240.0,
             color:backGorundColor,
           ),
-          new Image.asset(
+           Image.asset(
             'assets/splash-screen.png',
             fit: BoxFit.cover,
             repeat: ImageRepeat.noRepeat,
             width: 270.0,
             height: 240.0,
           ),
-          Divider(
+          const Divider(
             height: 105.2,
             color: backGorundColor,
           ),

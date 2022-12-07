@@ -2,6 +2,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:task1_bloc_training__/interface/screens/product_details_sceren.dart';
 import 'package:task1_bloc_training__/repositry/models/product_model.dart';
+import '../../utils/sizes/my_sizes.dart';
 import 'categorie_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,7 @@ class CardWidget extends StatelessWidget {
                   child: Text(
                     product.title,
                        maxLines: 2,
-                    style: TextStyle(fontSize: 16 , overflow: TextOverflow.ellipsis, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: s16 , overflow: TextOverflow.ellipsis, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Padding(
@@ -47,7 +48,7 @@ class CardWidget extends StatelessWidget {
                     
                     product.description,
                     maxLines: 1,
-                    style: TextStyle(fontSize: 13 , overflow: TextOverflow.ellipsis  , fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: s13 , overflow: TextOverflow.ellipsis  , fontWeight: FontWeight.w500),
                   ),
                 ),
                 Row(
@@ -55,9 +56,9 @@ class CardWidget extends StatelessWidget {
                   children: [
                     Text(
                       "\$ ${product.price}",
-                      style: TextStyle(fontSize: 18, color: Color.fromARGB(255, 150, 0, 0) ,fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: s18, color: const Color.fromARGB(255, 150, 0, 0) ,fontWeight: FontWeight.bold),
                     ),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.add , color: Colors.black,))
+                    IconButton(onPressed: (){}, icon: const Icon(Icons.add , color: Colors.black,))
                   ],
                 )
               ],

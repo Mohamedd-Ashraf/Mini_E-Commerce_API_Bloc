@@ -18,17 +18,9 @@ class NetworkService {
 
   static Future<Response> getData({required String endPoint}) async {
 print(BaseUrl+endPoint);
-     try {
-  // Response response= await dio.get("https://dummyjson.com/products/category/smartphones");
-  // print(response.data);
-  // print(response.statusCode);
+
    return await dio.get(endPoint);
-} on Exception catch (e) {
-   print(e);
-   Response r =Response(requestOptions: RequestOptions(path: ""));
-  return r ;
-  // TODO
-}
+
    
   }
 }
